@@ -14,7 +14,11 @@ namespace ArdalisRating
             }
             catch
             {
-                return null;
+                /*
+                 Now, under no conditions would it return null. This lets the behaviour of
+                 what to do if no match is found be encapsulated in the Factory if no match is found.
+                 */
+                return new UnknownPolicyRater(engine, engine.Logger);
             }
         }
     }
