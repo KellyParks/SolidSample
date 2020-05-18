@@ -6,8 +6,6 @@ namespace ArdalisRating
     {
         public RatingEngine Engine { get; set; }
 
-        public ConsoleLogger Logger => new ConsoleLogger();
-
         public Rater CreateRaterForPolicy(Policy policy, IRatingContext context)
         {
             return new RaterFactory().Create(policy, context);
@@ -18,6 +16,7 @@ namespace ArdalisRating
             return new JsonPolicySerializer().GetPolicyFromJsonString(policyJson);
         }
 
+        // NotImplementedExceptions indicate that this interface is too big
         public Policy GetPolicyFromXmlString(string policyXml)
         {
             throw new NotImplementedException();
@@ -36,11 +35,6 @@ namespace ArdalisRating
         public void Log(string message)
         {
             new ConsoleLogger().Log(message);
-        }
-
-        public void UpdateRating(decimal rating)
-        {
-            Engine.Rating = rating;
         }
     }
 }

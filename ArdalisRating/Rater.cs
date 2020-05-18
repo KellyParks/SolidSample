@@ -2,13 +2,14 @@
 {
     public abstract class Rater
     {
-        protected readonly IRatingContext _context;
-        protected readonly ConsoleLogger _logger;
+        protected readonly IRatingUpdater _ratingUpdater;
 
-        public Rater(IRatingContext context)
+        /* Make Logger a property and default it to console logger, which will give us the current behaviour in production, and let us modify the property in the tests. */
+        public ILogger Logger { get; set; } = new ConsoleLogger();
+
+        public Rater(IRatingUpdater ratingUpdater)
         {
-            _context = context;
-            _logger = _context.Logger;
+            _ratingUpdater = ratingUpdater;
         }
 
         public abstract void Rate(Policy policy);

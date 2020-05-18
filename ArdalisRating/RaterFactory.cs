@@ -14,7 +14,7 @@ namespace ArdalisRating
             }
             catch
             {
-                return new UnknownPolicyRater(context);
+                return new UnknownPolicyRater(new RatingUpdater(context.Engine));
             }
         }
     }
